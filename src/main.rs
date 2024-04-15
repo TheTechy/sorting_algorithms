@@ -86,9 +86,16 @@ fn merge(left: &[i32], right: &[i32], arr: &mut [i32]) {
 }
 
 fn main() {
+	let mut letters: Vec<char> = Vec::new();
 	let mut numbers: Vec<i32> = Vec::new();
-	for n in 0..100000 {
+	for n in 0..10000 {
 		numbers.push(rand::thread_rng().gen_range(1..=100));
+	}
+	
+	for l in 0..10000 {
+		let rnd_char: u32 = rand::thread_rng().gen_range(33..=126);
+		// println!("{:?}", char::from_u32(rnd_char));
+		letters.push(char::from_u32(rnd_char).unwrap());
 	}
 
 	println!("Numbers created.\nStarting to sort...");
@@ -104,4 +111,14 @@ fn main() {
 	let start_timer_3 = Instant::now();
 	merge_sort(&mut numbers);
 	println!("[Merge]:\tSorted array: {:.2?}", start_timer_3.elapsed());
+	
+	println!("Letters created.\nStarting to sort...");
+
+	let start_timer_4 = Instant::now();
+	bubble_sort(&mut letters);
+	println!("[Bubble]:\tSorted array: {:.2?}", start_timer_4.elapsed());
+
+	let start_timer_5 = Instant::now();
+	insertion_sort(&mut letters);
+	println!("[Insertion]:\tSorted array: {:.2?}", start_timer_5.elapsed());
 }
