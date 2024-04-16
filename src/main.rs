@@ -88,9 +88,15 @@ fn merge(left: &[i32], right: &[i32], arr: &mut [i32]) {
 fn main() {
 	let mut letters: Vec<char> = Vec::new();
 	let mut numbers: Vec<i32> = Vec::new();
-	for n in 0..10000 {
+
+	let mut n: u32 = 0;
+	while n < 10000 {
 		numbers.push(rand::thread_rng().gen_range(1..=100));
+		n += 1;
 	}
+	// for n in 0..10000 {
+	// 	numbers.push(rand::thread_rng().gen_range(1..=100));
+	// }
 	
 	for l in 0..10000 {
 		let rnd_char: u32 = rand::thread_rng().gen_range(33..=126);
