@@ -85,46 +85,53 @@ fn merge(left: &[i32], right: &[i32], arr: &mut [i32]) {
 	}
 }
 
-fn main() {
-	let mut letters: Vec<char> = Vec::new();
+
+fn generate_random_vector(is_chars: bool) -> Vec<i32> {
+	let mut n: i32 = 0;
 	let mut numbers: Vec<i32> = Vec::new();
 
-	let mut n: u32 = 0;
 	while n < 10000 {
 		numbers.push(rand::thread_rng().gen_range(1..=100));
 		n += 1;
 	}
-	// for n in 0..10000 {
-	// 	numbers.push(rand::thread_rng().gen_range(1..=100));
-	// }
-	
-	for l in 0..10000 {
-		let rnd_char: u32 = rand::thread_rng().gen_range(33..=126);
-		// println!("{:?}", char::from_u32(rnd_char));
-		letters.push(char::from_u32(rnd_char).unwrap());
-	}
+	return numbers;
+}
 
+fn main() {
+	// let mut letters: Vec<char> = Vec::new();
+	let mut rnd_numbers: Vec<i32> = generate_random_vector(true);
+		
 	println!("Numbers created.\nStarting to sort...");
-
+			
 	let start_timer_1 = Instant::now();
-	bubble_sort(&mut numbers);
-	println!("[Bubble]:\tSorted array: {:.2?}", start_timer_1.elapsed());
-
+	bubble_sort(&mut rnd_numbers);
+	println!("[Bubble]:\tSorted Vector: {:.2?}", start_timer_1.elapsed());
+	
+	// RESET
+	rnd_numbers.clear();
+	rnd_numbers = generate_random_vector(true);
+	
 	let start_timer_2 = Instant::now();
-	insertion_sort(&mut numbers);
-	println!("[Insertion]:\tSorted array: {:.2?}", start_timer_2.elapsed());
+	insertion_sort(&mut rnd_numbers);
+	println!("[Insertion]:\tSorted Vector: {:.2?}", start_timer_2.elapsed());
+
+	// RESET
+	rnd_numbers.clear();
+	rnd_numbers = generate_random_vector(true);
 
 	let start_timer_3 = Instant::now();
-	merge_sort(&mut numbers);
-	println!("[Merge]:\tSorted array: {:.2?}", start_timer_3.elapsed());
+	merge_sort(&mut rnd_numbers);
+	println!("[Merge]:\tSorted Vector: {:.2?}", start_timer_3.elapsed());
 	
-	println!("Letters created.\nStarting to sort...");
+	// println!("Letters created.\nStarting to sort...");
 
-	let start_timer_4 = Instant::now();
-	bubble_sort(&mut letters);
-	println!("[Bubble]:\tSorted array: {:.2?}", start_timer_4.elapsed());
+	// let start_timer_4 = Instant::now();
+	// bubble_sort(&mut letters);
+	// println!("[Bubble]:\tSorted array: {:.2?}", start_timer_4.elapsed());
 
-	let start_timer_5 = Instant::now();
-	insertion_sort(&mut letters);
-	println!("[Insertion]:\tSorted array: {:.2?}", start_timer_5.elapsed());
+	// let start_timer_5 = Instant::now();
+	// insertion_sort(&mut letters);
+	// println!("[Insertion]:\tSorted array: {:.2?}", start_timer_5.elapsed());
+
+	// let start_timer_6 = Instant::now();
 }
